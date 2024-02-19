@@ -38,3 +38,24 @@ you can dynamically insert stuff into a templates by using {{ _insert_ }}
 as css files are static they are generally kept in a static folder, 
 and then in the html document you can import it using <link href="{% static 'newyear/styles.css '%}" rel="stylesheet">
 and at the top of the document you put {% load static %}
+
+there is something called template inheritence, if there is very little changing from page to page, you can introduce a base layout and 
+change little things
+
+there is a thing in django called name space collision. whwere 2 things have the same name, to get around this you have to
+ declare app_name = "app name" in the applications urls.py page
+
+ you can accociate a form with an action and a method add.html is an example of this
+
+ CSRF error: cross site request forgery, an error that pops up if a form has a security vunerability, e.g someone on a different website, can trick a
+ user into completing a form. to counteract this the form needs a csrf token everytime a form is displayed to the user it comes with a new csrf token
+
+ in django forms client side validation is easy to implement, which is when it is done on the front end, this is easy to disable. 
+ So server side rendering is also needed 
+
+ so sometimes when we create a new method like the add method in tasks app, it can be called in 2 new ways once when you visit the '/add' page 
+ which is a get request, and secondly when you post a new task which is a post request 
+
+ sessions in django is a way for the application to remember who you are, and is able to store information about you
+ django stores sessions information in tables and they are automatically created when you run the command manage.py migrations
+ also in a html page you can insert {% empty %} if an array is empty then this will run
