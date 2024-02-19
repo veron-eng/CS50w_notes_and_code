@@ -1,0 +1,40 @@
+can create a project using: 
+django-admin startproject name_of_project
+
+manage.py is one of teh auto created files, it will be used to execute commands in our files
+settings.files is just stores our configurations
+urls.py is a a table of contents, and a database of urls on the webapplication that i can visit
+
+to run the django application:
+python3 manage.py runserver
+
+this runs the web application server
+
+
+one project might have multiple applications, an app for shoping, an app for videos 
+django allows for multiple apps 
+
+to create a new app you can run the command:
+python3 manage.py startapp name_of_app
+
+so when you create your new app, you can go to settings and add it to a list of installed apps in settings.py in your main project's folder
+
+so to have something be displayed when we go to our newly created app, we can go to the apps views.py page, 
+each view is something a user might want to see. to create a view you have to define it in a fuction.
+a default view is called an index and takes in a request parameter which is the request the user makes
+
+we need to tell the app when to return this response, what url is the user going to visit for the app to return this response
+we need to configure this, need to create a urls.py file, django automatically creates one in the project and you need to create one for 
+each app. typically the index path in urls is written like this path("", views.index, name="index")
+now in the projects urls page you need to add urls for the app aswell it is typically written like this: 
+path('hello/', include("hello.urls"))
+
+to mak eit more dynamic we can instead parameterise it by doing something like this path("<str:name>", views.greet, name="greet")
+
+to seperate things you can move the html rendering else where, and the html that is called is normally stored in a templates folder
+
+you can dynamically insert stuff into a templates by using {{ _insert_ }}
+
+as css files are static they are generally kept in a static folder, 
+and then in the html document you can import it using <link href="{% static 'newyear/styles.css '%}" rel="stylesheet">
+and at the top of the document you put {% load static %}
