@@ -1,3 +1,6 @@
+# lecture 3
+
+
 can create a project using: 
 django-admin startproject name_of_project
 
@@ -59,3 +62,80 @@ there is a thing in django called name space collision. whwere 2 things have the
  sessions in django is a way for the application to remember who you are, and is able to store information about you
  django stores sessions information in tables and they are automatically created when you run the command manage.py migrations
  also in a html page you can insert {% empty %} if an array is empty then this will run
+
+
+
+# lecture 4, SQL, Models and Migrations
+
+sql - language to allow us to interact with databases
+models - django allows to interact with sql and databases using models and objects
+migrations - is a technique that allows to updates our database when something changes in our models
+
+relational database - data stored in a table 
+
+TEXT: For strings of text (Ex. a person’s name)
+NUMERIC: A more general form of numeric data (Ex. A date or boolean value)
+INTEGER: Any non-decimal number (Ex. a person’s age)
+REAL: Any real number, decimal numbers (Ex. a person’s weight)
+BLOB (Binary Large Object): Any other binary data that we may want to store in our database (Ex. an image)
+
+
+to create a table use the command create table and then the name and then comma seperated values of the collums as well as there types, it is common
+include a primary key 
+
+can insert into a table using the command insert into and then the name of the table and then the comma seperated values that you want to include.
+
+to get data out of the database:
+SELECT * FROM flights;
+The above command (*) retrieves all of the data from our flights table
+
+if you only want to query particaular collums:
+SELECT origin, destination FROM flights;
+
+if you want to be even more particular: 
+SELECT * FROM flights WHERE id = 3;
+SELECT * FROM flights WHERE origin = "New York";
+SELECT * FROM flights WHERE duration > 500;
+SELECT * FROM flights WHERE duration > 500 AND destination = "Paris";
+SELECT * FROM flights WHERE duration > 500 OR destination = "Paris";
+SELECT * FROM flights WHERE origin IN ("New York", "Lima");
+SELECT * FROM flights WHERE origin LIKE "%a%";
+
+
+to update a table:
+UPDATE flights
+    SET duration = 430
+    WHERE origin = "New York"
+    AND destination = "London";
+
+to delete something in the table: 
+DELETE FROM flights WHERE destination = "Tokyo";
+
+join table accociates one table with the ids of 2 tables 
+
+JOIN queries help us query two tables together, and this returns a table back:
+SELECT first, origin, destination
+FROM flights JOIN passengers
+ON passengers.flight_id = flights.id;
+
+a way we can make our queries more efficient when dealing with large tables is to create an index similar to the index you might see 
+in the back of a textbook. For example, if we know that we’ll often look up passengers by their last name, we could create an index from last
+ name to id using the command:
+CREATE INDEX name_index ON passengers (last);
+
+A SQL injection attack is when a malicious user enters SQL code as input on a site in order to bypass the sites security measures
+For example, let’s say we have a table storing usernames and passwords, and then a login form on the home site of a page. We may search for the user using a query such as:
+
+SELECT * FROM users
+WHERE username = username AND password = password;
+
+A hacker, on the other hand, might type harry" -- as a username and nothing as a password. It turns out that -- stands for a comment in SQL, meaning the query would look like:
+SELECT * FROM users
+WHERE username = "harry"--" AND password = "12345";
+
+he other main vulnerability when it comes to SQL is known as a Race Condition.
+
+A race condition is a situation that occurs when multiple queries to a database occur simultaneously. 
+When these are not adequately handled, problems can arise in the precise times that databases are updated.
+One potential solution for this problem would be locking the database. We could not allow any other interaction with the database until 
+one transaction has been completed.
