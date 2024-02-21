@@ -139,3 +139,14 @@ A race condition is a situation that occurs when multiple queries to a database 
 When these are not adequately handled, problems can arise in the precise times that databases are updated.
 One potential solution for this problem would be locking the database. We could not allow any other interaction with the database until 
 one transaction has been completed.
+
+Django Models are a level of abstraction on top of SQL that allow us to work with databases using Python classes and objects
+rather than direct SQL queries.
+
+to make the information we run: 
+ 
+python manage.py makemigrations
+
+and then to store it we run:
+
+python manage.py migrate
