@@ -150,3 +150,36 @@ python manage.py makemigrations
 and then to store it we run:
 
 python manage.py migrate
+
+when we are making new classes in django the fields of the new class can be related to each other using  Foreign Keys, 
+which means they refer to another object.
+
+the argument, on_delete=models.CASCADE gives instructions for what should happen if an airport is deleted. In this case, 
+we specify that when an airport is deleted, all flights associated with it should also be deleted. There are several other options 
+in addition to CASCADE.
+
+We provide a related name, which gives us a way to search for all flights with a given airport as their origin 
+or destination. this allows for us to ask the sql table for different stuff and django builds out the sql queries autommatically
+
+you can delete the contents of a database using:
+
+python3 manage.py flush
+
+as making model is really common django has an admin console that lets us do this automatically to use this we need to create a admin account
+this is done by the command:
+
+python manage.py createsuperuser
+
+remeber to add your models to the admin application, this tells django which models we would like to have access to in the admin app
+
+in the project passengers have a Many to Many relationship with flights, described in Django using the ManyToManyField.
+We provided the argument blank=True which means a passenger can have no flights
+We added a related_name that serves the same purpose as it did earlier: it will allow us to find all passengers on a given flight.
+
+
+# lecture 7, testing
+
+in python we can write unit tests using the unittest library, we have to first import it and import the thing we want to test,
+then create a class and that takes in unittest.TestCase.
+typically the tests are written with in methods that take in self, and with the first line being a doc string.
+the tests are either written as self.assertTrue or self.assertFalse(name_of_function)
