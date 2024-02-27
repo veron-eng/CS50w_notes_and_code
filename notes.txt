@@ -183,3 +183,9 @@ in python we can write unit tests using the unittest library, we have to first i
 then create a class and that takes in unittest.TestCase.
 typically the tests are written with in methods that take in self, and with the first line being a doc string.
 the tests are either written as self.assertTrue or self.assertFalse(name_of_function)
+
+Django come with a test file which is made when you make applications, django has a speacial function that it runs first called setup() which is 
+called before the rest of the tests are run, this is to build out models and insert things into the test database
+
+We can check whether specific functions workm and whether the pages load up, and we can do this by creating a Client object and then making requests
+to the object 

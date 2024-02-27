@@ -17,6 +17,9 @@ class Flights(models.Model):
 
     def __str__(self) :
         return f"{self.id}: {self.origin} to {self.destination}"
+    
+    def is_valid_flight(self):
+        return self.origin != self.destination and self.duration > 0
 
 
 # class Flights(models.Model):
